@@ -12,7 +12,7 @@ import (
 )
 
 func main() {
-	input, inputErr := os.ReadFile("puzzle1-1.txt")
+	input, inputErr := os.ReadFile("puzzle1.txt")
 
 	if inputErr != nil {
 		log.Fatalln(inputErr)
@@ -33,4 +33,5 @@ func main() {
 
 	sort.Ints(sums)
 	fmt.Println(util.Last(sums))
+	fmt.Println(util.Sum(util.Lastn(sums, 3)))
 }

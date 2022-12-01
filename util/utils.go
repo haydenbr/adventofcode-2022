@@ -20,3 +20,17 @@ func Map[T any, R any](s []T, f func(T, int) R) []R {
 func Last[T any](s []T) T {
 	return s[len(s)-1]
 }
+
+func Lastn[T any](s []T, n int) []T {
+	return s[len(s)-n:]
+}
+
+type Number interface {
+	int | int64 | float64
+}
+
+func Sum[T Number](numbers []T) T {
+	return Fold(numbers, 0, func(result T, element T, _ int) T {
+		return result + element
+	})
+}
