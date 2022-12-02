@@ -1,6 +1,6 @@
 package util
 
-func Fold[T any, R any](s []T, initial R, f func(R, T, int) R) R {
+func Fold[T any, R any](initial R, s []T, f func(R, T, int) R) R {
 	result := initial
 
 	for i, v := range s {
@@ -11,7 +11,7 @@ func Fold[T any, R any](s []T, initial R, f func(R, T, int) R) R {
 }
 
 func Map[T any, R any](s []T, f func(T, int) R) []R {
-	return Fold(s, make([]R, len(s)), func(result []R, element T, index int) []R {
+	return Fold(make([]R, len(s)), s, func(result []R, element T, index int) []R {
 		result[index] = f(element, index)
 		return result
 	})
@@ -30,7 +30,7 @@ type Number interface {
 }
 
 func Sum[T Number](numbers []T) T {
-	return Fold(numbers, 0, func(result T, element T, _ int) T {
+	return Fold(0, numbers, func(result T, element T, _ int) T {
 		return result + element
 	})
 }
