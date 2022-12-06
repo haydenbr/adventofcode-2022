@@ -58,6 +58,8 @@ var part2Cases = map[string]int{
 	"C Z": 1 + 6,
 }
 
+// what do I choose? did I win, draw, or loose?
+
 func main() {
 	input, inputErr := os.ReadFile("puzzle2.txt")
 
@@ -66,10 +68,10 @@ func main() {
 	}
 
 	rounds := strings.Split(strings.TrimSpace(string(input)), "\n")
-	part1Score := util.Fold(0, rounds, func(score int, round string, _ int) int {
+	part1Score := util.Fold(0, rounds, func(score int, round string) int {
 		return score + part1Cases[round]
 	})
-	part2Score := util.Fold(0, rounds, func(score int, round string, _ int) int {
+	part2Score := util.Fold(0, rounds, func(score int, round string) int {
 		return score + part2Cases[round]
 	})
 

@@ -19,8 +19,8 @@ func main() {
 	}
 
 	groups := strings.Split(strings.TrimSpace(string(input)), "\n\n")
-	sums := util.Map(groups, func(group string, _ int) int {
-		return util.Fold(0, strings.Split(group, "\n"), func(result int, s string, _ int) int {
+	sums := util.Map(groups, func(group string) int {
+		return util.Fold(0, strings.Split(group, "\n"), func(result int, s string) int {
 			parsedInt, parsedIntError := strconv.Atoi(s)
 
 			if parsedIntError != nil {
