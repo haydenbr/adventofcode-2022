@@ -45,6 +45,12 @@ func Sum[T Number](numbers []T) T {
 	})
 }
 
+func SumWith[TSlice any, TResult Number](s []TSlice, fn func(TSlice) TResult) TResult {
+	return Fold(0, s, func(result TResult, element TSlice) TResult {
+		return result + fn(element)
+	})
+}
+
 func SliceToMap[TSlice any, TMapKey comparable, TMapValue any](s []TSlice, keySelector func(TSlice) TMapKey, valueSelector func(TSlice) TMapValue) map[TMapKey]TMapValue {
 	m := make(map[TMapKey]TMapValue)
 
