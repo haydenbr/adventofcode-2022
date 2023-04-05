@@ -10,6 +10,21 @@ func Fold[T any, R any](initial R, s []T, f func(R, T) R) R {
 	return result
 }
 
+func Filter[T any](s []T, predicate func(T) bool) []T {
+	result := make([]T, 0)
+
+	// for i, e: = range s {
+	// 	if
+	// }
+	for _, e := range s {
+		if predicate(e) {
+			result = append(result, e)
+		}
+	}
+
+	return result
+}
+
 func FoldIndex[T any, R any](initial R, s []T, f func(R, T, int) R) R {
 	result := initial
 
